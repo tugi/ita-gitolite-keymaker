@@ -1,1 +1,0 @@
-# ita-gitolite-keymaker
