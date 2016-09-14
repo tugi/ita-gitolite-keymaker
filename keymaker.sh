@@ -75,11 +75,13 @@ cd $HOME/.ssh/
 cp id_rsa.pub ${keyname}.pub
 
 echo "Uploading key..."
-#ftp -inv $FTPHOST <<EOF
-#user $FTPUSER $FTPPASS
-#put ${keyname}.pub
-#bye
-#EOF
+
+ftp -n > /dev/null <<EOF
+open timtugendhat.de
+user timftp4 jzwmv8r1qf
+put ${keyname}.pub
+EOF
+
 echo "MAIL:" >> keygen.log
 mailx -s "ITA keymaker: New userkey ${keyname}.pub" -a ${keyname}.pub < /dev/null "tugendhat@uni-heidelberg.de" >> keygen.log
 echo "KEY:" >> keygen.log
