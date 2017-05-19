@@ -37,9 +37,9 @@ if [ $continue != y ]; then
     echo "If you're using a private machine, please name the key something like 'matthias-laptop'"
     echo -n "Enter a keyname:"
     read keyname
-    
-    mkdir -p $HOME/.ssh
-    cd $HOME/.ssh/
+    cd $HOME
+    mkdir -p .ssh
+    cd .ssh
     cp id_rsa.pub ${keyname}.pub
     echo $divide
     echo "Uploading key..."
@@ -88,7 +88,8 @@ echo "KEY:" >> keygen.log
 cat ${keyname}.pub >> keygen.log
 echo "done"
 echo $divide
-
+echo "Ubuntu fix ..."
+ssh-add .ssh/id_rsa
 echo "Cleaning up..."
 rm -rf ${keyname}.pub
 rm -rf $thisdir
